@@ -1,0 +1,24 @@
+.BlogInput{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#TitleInput {
+    margin-top: 15px;
+    width:50%
+}
+input {
+    font-size: 20px;
+    size:50
+}
+.result {
+    text-align: left
+}
+textarea{
+    height:40vh;
+    font-size:25px;
+    font-family: Arial;
+}
+.button{
+    width :100px;
+    margin-right: 20px
+}
