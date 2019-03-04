@@ -14,12 +14,12 @@ import BlogInput from './containers/BlogInput'
 const store = createStore(blogReducer)
 ReactDOM.render(
  <Provider store = {store} >
-     <BrowserRouter>
+     <ConnectedRouter>
      <div>
         <App />
 
         </div>
-    </BrowserRouter>
+    </ConnectedRouter>
  </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
