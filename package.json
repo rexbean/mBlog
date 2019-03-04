@@ -2,7 +2,7 @@
   "name": "mblog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rexbean.github.io",
+  "homepage": "https://rexbean.github.io/mBlog/",
   "dependencies": {
     "acorn": "^6.1.0",
     "braces": "^2.3.2",
