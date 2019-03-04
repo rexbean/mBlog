@@ -1,3 +1,6 @@
+body {
+    margin: 0;
+}
 .BlogInput{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -15,6 +18,7 @@ input {
 }
 textarea{
     height:40vh;
+    width:100%;
     font-size:25px;
     font-family: Arial;
 }

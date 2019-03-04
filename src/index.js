@@ -6,11 +6,20 @@ import { createStore} from 'redux'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 import blogReducer from './reducer/Blog';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import Blog from './components/Blog'
+import BlogInput from './containers/BlogInput'
+
 
 const store = createStore(blogReducer)
 ReactDOM.render(
  <Provider store = {store} >
-     <App/>
+     <BrowserRouter>
+     <div>
+        <App />
+
+        </div>
+    </BrowserRouter>
  </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

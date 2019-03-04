@@ -1,10 +1,13 @@
 import React, { Component} from 'react'
 import PropTypes from 'prop-types';
-import {Button, Container, Col, Row, Dropdown, DropdownButton} from 'react-bootstrap'
+import {Button, Container, Col, Row} from 'react-bootstrap'
+import Input from './Controls/Input'
+import TextArea from './Controls/TextArea'
+import DropDown from './Controls/DropDown'
 import ReactMarkdown from 'react-markdown'
 require('../css/BlogInput.css');
 
-export default class BlogInputComponent extends Component {
+export default class BlogInput extends Component {
     static propTypes = {
         blogTitle: PropTypes.string,
         blogContent: PropTypes.string,
@@ -14,89 +17,111 @@ export default class BlogInputComponent extends Component {
         super(props)
         this.state = {
             title: '',
-            content: ''
+            author: '',
+            date: '',
+            content: '',
+            type:'',
+            options:[]
         }
     }
 
+    componentWillMount () {
+        // set date
+        var d = new Date();
+        this.setState({date : d.toUTCString()})
+        // set dropdown options
+        this.state.options = [{link:'',text :'project'}, 
+        {link:'', text:'note'},
+        {link:'', text:'add New...'}]
+    }
+
     handleSubmit() {
+        if(this.state.type === ''){
+            this.state.type = this.state.options[0].text
+        }
         if (this.props.onSubmit) {
             this.props.onSubmit({
                 title: this.state.title,
+                author: this.state.author,
+                type: this.state.type,
+                date: this.state.date,
                 content: this.state.content
             })
         }
     }
 
-    handleContentChange (event) {
+    handleDropDownSelect(type){
         this.setState({
-          content: event.target.value
+            // TODO judge whehter have this type or not
+            type: type
+        })
+    }
+
+    handleContentChange (contentValue) {
+        this.setState({
+          content: contentValue
        })
     }
 
-    onkeydown(event){
-        if(event.keyCode === 9){
-            event.preventDefault()
-            event.target.value = event.target.value + "    "; // 跳几格由你自已决定
-            event.target.focus()
-        }
-
+    handleTitleBlur(title){
+        this.setState({
+            title: title
+        })
+    }
+    handleAuthorBlur(author){
+        this.setState({
+            author: author
+        })
     }
 
     render() {
         return ( 
         <div className = 'BlogInput' >
-            <div className = 'BlogInput'>
-                <input className = 'BlogInput'type = "text" size = "70" />
-            </div>
             <div className = 'BlogInput' >
             <Container >
-                <Row >
-                <Col></Col>
-                <Col>Author
-                    <input id = "AuthorInput" type = "text" size = "20" /> 
-                </Col>
-                <Col > Date 
-                    <input id = "DateInput" type = "text" size = "20"/>
-                </Col>
-                <Col> Category
-                    <DropdownButton id = "dropdown-basic-button" title = "Dropdown button" >
-                        <Dropdown.Item href = "#/action-1" > Project</Dropdown.Item>  
-                        <Dropdown.Item href = "#/action-2" > Note </Dropdown.Item>  
-                        <Dropdown.Item href = "#/action-3" > Add New </Dropdown.Item>  
-                    </DropdownButton>
-                </Col> 
-                <Col></Col>
-                </Row>
-                <Row>
-                    <Col md={2}></Col>
+                <Row className = "BlogInput">
                     <Col md={8}>
-                        <textarea
-                        ref={(textarea) => this.textarea = textarea}
-                        value = {this.state.content} 
-
-                        onKeyDown = {this.onkeydown}
-                        onChange={this.handleContentChange.bind(this)} 
-                        rows= "10" cols= "50" 
+                        <Input title = 'Title'
+                            onBlur = {this.handleTitleBlur.bind(this)}
                         />
                     </Col>
-                    <Col md={2}></Col>
                 </Row>
-                <Row>
-                    <Col md={3}></Col>
+                <Row className = 'BlogInput'>
+                    <Col md = {4}>
+                        <Input title = 'Author'
+                            onBlur = {this.handleAuthorBlur.bind(this)}
+                            />
+                    </Col>
+                    <Col md = {4}>   
+                        <DropDown options = {this.state.options}
+                            onSelect ={this.handleDropDownSelect.bind(this)}
+                        />
+                    </Col> 
+                </Row>
+                <Row className = 'BlogInput'>
+                    <Col md={8}>
+                        <TextArea onChange = {this.handleContentChange.bind(this)}/>
+                    </Col>
+                </Row>
+                <Row className = "BlogInput">
+                    <Col md = {4}></Col>
+                    <Col md = {4}>
+                        <p id = "DateInput" type = "text">{this.state.date}</p>
+                    </Col>
+                </Row>
+                <Row className = 'BlogInput'>
+                    <Col md={1}></Col>
                     <Col md={3}>
                         <Button variant = "primary" className = "button" onClick = {this.handleSubmit.bind(this)}> Save </Button>
                     </Col>
                     <Col md={3}>
                         <Button variant = "danger" className = "button" > Cancel </Button>
                     </Col>
-                    <Col md={3}></Col>
                 </Row>
-                <Row>
+                <Row className = 'BlogInput'>
                     <Col md={2}></Col>
                     <Col md={8}>
-                        <ReactMarkdown className = 'result' source = {this.state.content}
-                            
-                        />
+                        <ReactMarkdown className = 'result' source = {this.state.content}/>
                     </Col>
                     <Col md={2}></Col>
                 </Row>

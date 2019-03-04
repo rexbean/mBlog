@@ -1,3 +1,5 @@
+import { bindActionCreators } from "redux";
+
 const INIT_BLOG = 'INIT_BLOG'
 const ADD_BLOG = 'ADD_BLOG'
 const DELETE_BLOG = 'DELETE_BLOG'
@@ -13,7 +15,7 @@ export default function (state, action) {
         case INIT_BLOG:
             // init blog
             return {
-                blogs: action.blogs
+                blogs: [...action.blogs]
             }
         case ADD_BLOG:
             // add blog

@@ -2,6 +2,7 @@ import BlogInput from '../components/BlogInput'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {initBlogs, addBlog} from '../reducer/Blog'
 
 
 class BlogInputContainer extends Component {
@@ -10,17 +11,23 @@ class BlogInputContainer extends Component {
     }
 
     _submitToLocal(blogs){
-        localStorage.setItem('blogs',blogs)
+        // localStorage.clear()
+        localStorage.setItem('blogs',JSON.stringify(blogs))
+
     }
 
     handleSubmit(blog) {
         if (!blog) return
         if (!blog.title) return alert('Please Input the title')
         if (!blog.content) return alert('Please Input the contetn')
+        console.log(blog.title +" " + blog.author + " "+ blog.content +" " +blog.date)
         const { blogs } = this.props
-        const newBlogs = [...blogs, blog.title]
+        const newBlogs = [...blogs, blog]
         // this._submitToGithub(blog)
-        this._submitToLocal(blogs)
+        console.log("new blogs" + newBlogs)
+        this._submitToLocal(newBlogs)
+        this.props.addBlog(blog)
+
     }
 
     render() {
@@ -30,6 +37,23 @@ class BlogInputContainer extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      blogs: state.blogs
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      initBlogs: (blogs) => {
+        dispatch(initBlogs(blogs))
+      },
+      addBlog: (blog) => {
+          console.log("blog"+blog)
+          dispatch(addBlog(blog))
+      }
+    }
+  }
 
 export default connect(
     mapStateToProps,
