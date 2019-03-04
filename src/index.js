@@ -6,7 +6,7 @@ import { createStore} from 'redux'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 import blogReducer from './reducer/Blog';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { ConnectedRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Blog from './components/Blog'
 import BlogInput from './containers/BlogInput'
 
