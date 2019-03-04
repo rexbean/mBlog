@@ -16,13 +16,13 @@ class App extends Component {
         <header className="primary-header">
           <Nav >
             <Nav.Item>
-              <Nav.Link href = "/">Home</Nav.Link>
+              <Nav.Link href = "/mBlog">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href = "/blogs">Blogs</Nav.Link>
+              <Nav.Link href = "/mBlog/blogs">Blogs</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href = "/new">New Post</Nav.Link>
+              <Nav.Link href = "/mBlog/new">New Post</Nav.Link>
             </Nav.Item>
           </Nav>
             
