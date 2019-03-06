@@ -14,11 +14,8 @@ import BlogInput from './containers/BlogInput'
 const store = createStore(blogReducer)
 ReactDOM.render(
  <Provider store = {store} >
-     <BrowserRouter>
-     <div>
+     <BrowserRouter basename={process.env.PUBLIC_URL}>
         <App />
-
-        </div>
     </BrowserRouter>
  </Provider>, document.getElementById('root'));
 

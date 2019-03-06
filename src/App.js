@@ -27,10 +27,10 @@ class App extends Component {
           </Nav>
             
         </header>
-        <Route  exact path = '/mBlog/blogs'  component = {BlogList}/>
-        <Route path = "/mBlog/blogs/:blogId" component = {Blog}/>
+        <Route  exact path = {`/blogs`}  render={ (routerProps) => <BlogList routerProps={routerProps} />}/>
+        <Route path = {`blogs/:blogId`} render={ (routerProps) => <Blog routerProps={routerProps} />}/>
 
-        <Route path = '/mBlog/new' component = {BlogInput}></Route>
+        <Route path = {`/new`} render={ (routerProps) => <BlogInput routerProps={routerProps} />}/>
 
       </div>
     )} 
