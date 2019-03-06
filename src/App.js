@@ -10,7 +10,10 @@ import Blog from './components/Blog'
 import { Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
+  
   render() {
+    console.log(this.state);
+    console.log("This is the process.env", process.env.PUBLIC_URL)
     return (
       <div className="App">
         <header className="primary-header">
