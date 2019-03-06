@@ -19,16 +19,16 @@ class App extends Component {
               <Nav.Link href = "">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href = "/blogs">Blogs</Nav.Link>
+              <Nav.Link href = "blogs">Blogs</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href = "/new">New Post</Nav.Link>
+              <Nav.Link href = "new">New Post</Nav.Link>
             </Nav.Item>
           </Nav>
             
         </header>
         <Route  exact path = {`/blogs`}  render={ (routerProps) => <BlogList routerProps={routerProps} />}/>
-        <Route path = {`blogs/:blogId`} render={ (routerProps) => <Blog routerProps={routerProps} />}/>
+        <Route path = {`/blogs/:blogId`} render={ (routerProps) => <Blog routerProps={routerProps} />}/>
 
         <Route path = {`/new`} render={ (routerProps) => <BlogInput routerProps={routerProps} />}/>
 
